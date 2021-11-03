@@ -1,0 +1,29 @@
+<div class="col-lg-3 col-md-6 col-xs-12 col-sm-12 card-holder">
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="media mb-3">
+          <img src="{{user.details.picture.thumbnail}}" class="d-block ui-w-40 rounded-circle" alt="User img">
+          <div class="media-body ml-3">
+            <a routerLink="/user/{{user.userId}}">{{user.details.name.first}} {{user.details.name.last}}</a>
+            <div class="text-muted small">3 days ago</div>
+          </div>
+        </div>
+    
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus commodo bibendum. Vivamus laoreet blandit odio, vel finibus quam dictum ut.
+        </p>
+        <a routerLink="/post/{{post.postId}}/user/{{user.userId}}" class="ui-rect ui-bg-cover" style="background-image: url('https://picsum.photos/seed/{{post.postId}}/1200/800');"></a>
+      </div>
+      <div class="card-footer">
+        <a class="d-inline-block text-muted" (click)="likePost()">
+            <small><strong>{{post.likes}}</strong> <i [ngClass]="post.liked ? 'fa fa-heart' : 'fa fa-heart-o'"></i></small>
+        </a>
+        <a routerLink="/post/{{post.postId}}" class="d-inline-block text-muted ml-3">
+            <small><strong>{{post.comments.length}}</strong> <i class="fa fa-comment"></i></small>
+        </a>
+        <a class="d-inline-block text-muted ml-3" (click)="showSocialPopup()">
+          <small><strong>{{post.shares}}</strong> <i class="fa fa-share"></i></small>
+        </a>
+      </div>
+    </div>
+</div>

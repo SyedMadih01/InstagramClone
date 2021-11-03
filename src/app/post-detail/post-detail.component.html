@@ -1,0 +1,53 @@
+<div class="col-lg-12 col-md-12 col-sm-12 padding">
+    <!-- Post content-->
+    <article *ngIf="user">
+        <!-- Post header-->
+        <header class="mb-4">
+            <!-- Post title-->
+            <h1 class="fw-bolder mb-1">Welcome to Post!</h1>
+            <!-- Post meta content-->
+            <div class="text-muted fst-italic mb-2">Posted on {{user.registered.date | date}}</div>
+        
+        </header>
+        <!-- Preview image figure-->
+        <figure class="mb-4">
+            <img class="img-fluid rounded" src="https://picsum.photos/seed/{{seed}}/1200/800" alt="..." />
+        </figure>
+        <!-- Post content-->
+        <section class="mb-5">
+            <p class="fs-5 mb-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus finibus commodo bibendum. Vivamus laoreet blandit odio, vel finibus quam dictum ut.</p>
+        </section>
+    </article>
+    <!-- Comments section-->
+    <section class="mb-5">
+        <div class="card bg-light">
+            <div class="card-body">
+                <!-- Comment form-->
+                <form class="mb-4 comment-form" [formGroup]="commentForm" (ngSubmit)="addComment()" novalidate>
+                    <input type="hidden" formControlName="userId" name="userId" value="{{seed}}">
+                    <input type="hidden" formControlName="postId" name="postId" value="{{seed}}">
+                    <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!"
+                    formControlName="comment"></textarea>
+                    <div *ngIf="commentForm.get('comment').invalid && commentForm.submit" class="alert alert-danger">
+                        <div *ngIf="commentForm.controls['comment'].errors.required">
+                          Comment is required.
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Post</button>
+                </form>
+                <!-- Single comment-->
+                <div *ngFor="let comment of comments">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0">
+                            <img class="rounded-circle" src="{{user.picture.thumbnail}}" alt="..." /></div>
+                        <div class="ms-3">
+                            <div class="fw-bold">{{user.name.first}} {{user.name.last}}</div>
+                            {{comment.message}}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+</div>

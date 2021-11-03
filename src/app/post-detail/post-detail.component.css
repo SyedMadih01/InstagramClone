@@ -1,0 +1,15 @@
+.padding {
+    padding: 0 10%;
+}
+
+.img-fluid {
+    width:100%;
+}
+
+header {
+    padding: 10px 0;
+}
+
+.comment-form {
+    padding-bottom: 10px;
+}
